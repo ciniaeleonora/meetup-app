@@ -15,18 +15,26 @@
         </ul>
     </nav>
 
-    <h1>Promoters</h1>
+    <h1>Expired Events</h1>
     <br>
 
+    <a href="/events/add"> Add Event</a>
+    <br>
     <table style="width:100%"; border="1"> 
         <tr>
-          <th>Name</th>
-          <th>Contact</th>
+          <th>Event</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Promoter</th>
+          <th>Action</th>
         </tr>
-        <% data.forEach((el) => { %>
+        <% data.forEach((el, i) => { %>
         <tr>
-          <td><%= el.name %></td>
-          <td><%= el.phone %></td>
+          <td><%= el.generateEvent() %></td>
+          <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
+          <td><%= el.location %></td>
+          <td><%= el.Promoter.name %></td>
+          <td><a href="/events/delete/<%= el.id %>">DELETE</a></td>          
         </tr>
         <% }) %>
       </table>

@@ -1,12 +1,15 @@
 'use strict'
 
-const { Promoter, Event } = require('../models/index')
+const { Promoter, Event, User } = require('../models/index')
 const formatDate = require('../helpers/formatDate')
 
 class EventController{
     static findAll (req, res){
         Event.findAll({
-            include: Promoter
+            include: Promoter, User,
+            where: {
+                status: 'active'
+            }
         })
             .then(data => {
                 // res.send(data)
@@ -45,7 +48,11 @@ class EventController{
             })
     }
 
-    // ganti edit laeng
+    // static getRegister(req, res){
+    //     let pk = +req.params.id
+
+    // }
+
 
     static getEditEvent(req, res){
         let pk = +req.params.id
@@ -92,22 +99,37 @@ class EventController{
     
     static delete (req, res){
         let pk = +req.params.id
-        
-        console.log(pk)
-
         Event.destroy({
             where: {
                 id:pk
             }
         })
             .then((data) => {
-                res.redirect('/events')
+                res.redirect('/events/expired')
                 // res.send(data)
             })
             .catch((err) => {
                 res.send(err)
             })
     }
+
+    static findExpired (req, res){
+        Event.findAll({
+            include: Promoter, User,
+            where: {
+                status: 'expired'
+            }
+
+        })
+            .then(data => {
+                res.render('expiredEvents', {data, formatDate})
+            })
+            .catch(err => {
+                res.send(err)
+            })
+    }
+
 }
+
 
 module.exports = EventController
