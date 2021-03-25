@@ -4,35 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../utils/bootstrap-style.ejs') %>
     <title>Meet Up!</title>
 </head>
 <body>
-    <nav>
-        <ul style="list-style-type: none;">
-            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
-        </ul>
-    </nav>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1"><strong>Meetup</strong>App</span>
+      <form class="d-flex">
+        <a style="margin: 0px 5px;" class="btn btn-outline-success" href="/events" role="button">Events</a>
+        <a style="margin: 0px 5px;" class="btn btn-outline-success" href="/promoters" role="button">Promoters</a>
+      </form>
+    </div>
+  </nav>
 
-    <h1>Edit Event...</h1>
+  <div class="container-md col-md-4">
+    <h1 style="margin: 5% 0px;">Edit Event...</h1>
     <form action="/events/edit/<%=data.event.id%>"; method="POST">
-        <label for="name">Title:</label><br>
-        <input type="text" id="name" name="name" value="<%= data.event.name%>"><br><br>
-        <label for="date">Date:</label><br>
-        <input type="date" id="date" name="date" value="<%= data.event.date%>"><br><br>
-        <label for="location">Location:</label><br>
-        <input type="location" id="location" name="location" value="<%= data.event.location%>"><br><br>
-        <label for="location">Speaker:</label><br>
-        <input type="speakers" id="speakers" name="speakers" value="<%= data.event.speakers%>"><br><br>
-        <label for="PromoterId">Promoter:</label><br>
-        <select id="PromoterId" name="PromoterId">
+        <label class="form-label" for="name">Title:</label><br>
+        <input class="form-control" type="text" id="name" name="name" value="<%= data.event.name%>"><br>
+        <label class="form-label" for="date">Date:</label><br>
+        <input class="form-control" type="date" id="date" name="date" value="<%= data.event.date%>"><br>
+        <label class="form-label" for="location">Location:</label><br>
+        <input class="form-control" type="location" id="location" name="location" value="<%= data.event.location%>"><br>
+        <label class="form-label" for="location">Speaker:</label><br>
+        <input class="form-control" type="speakers" id="speakers" name="speakers" value="<%= data.event.speakers%>"><br>
+        <label class="form-label" for="PromoterId">Promoter:</label><br>
+        <select class="form-control" id="PromoterId" name="PromoterId">
             <option selected disabled>--Please Choose--</option>
             <% data.promoter.forEach(el => {%>
             <option value="<%=el.id%>"><%= el.name%></option>
             <% }) %>
         </select><br><br>
-        <input type="submit">
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+  </div>
     
 </body>
 </html>

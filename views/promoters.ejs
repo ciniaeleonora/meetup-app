@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../views/utils/bootstrap-style.ejs') %>
     <title>Meet Up !</title>
 </head>
 <body>
-    <nav>
-        <ul style="list-style-type: none;">
-            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/events/expired">Expired Events</a></li>
-        </ul>
-    </nav>
+  <%- include('../views/utils/navber-login.ejs') %>
 
+  <div style="text-align: center; margin: 3% 0px 1%;">
     <h1>Promoters</h1>
     <br>
+  </div>
 
-    <table style="width:100%"; border="1"> 
-        <tr>
+  <div class="container-md col-md-4">
+    <table style="width:100%"; class="table"> 
+        <tr class="table-dark">
           <th>Name</th>
           <th>Contact</th>
         </tr>
@@ -30,5 +28,6 @@
         </tr>
         <% }) %>
       </table>
+  </div>
 </body>
 </html>
