@@ -16,10 +16,10 @@ class UserController {
         if(!found) res.redirect('/error')
         if (bcrypt.compareSync(req.body.password, found.password)) {
           req.session.currentUser = {
+            id : found.id,
             name: found.name,
             email: found.email,
-            isAdmin: found.isAdmin,
-            isLogin: true
+            isAdmin: found.isAdmin
           }
           res.redirect('/')
         } else res.redirect('/login')
