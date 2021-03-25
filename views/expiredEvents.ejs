@@ -25,7 +25,6 @@
           <th>Event</th>
           <th>Date</th>
           <th>Location</th>
-          <th>Promoter</th>
           <th>Action</th>
         </tr>
         <% data.forEach((el, i) => { %>
@@ -33,8 +32,10 @@
           <td><%= el.generateEvent() %></td>
           <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
           <td><%= el.location %></td>
-          <td><%= el.Promoter.name %></td>
-          <td><a href="/events/delete/<%= el.id %>">DELETE</a></td>          
+          <td>
+          <% if(currentUser.isAdmin) { %>
+          <a href="/events/delete/<%= el.id %>">DELETE</a></td>  
+          <% } %>
         </tr>
         <% }) %>
       </table>

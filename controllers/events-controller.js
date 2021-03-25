@@ -5,19 +5,19 @@ const formatDate = require('../helpers/formatDate')
 
 class EventController{
     static findAll (req, res){
-        Event.findAll({
-            include: [Promoter, User],
-            where: {
-                status: 'active'
-            }
-        })
-            .then(data => {
-                // res.send(data)
-                res.render('events', {data, formatDate})
+            Event.findAll({
+                include: [Promoter, User],
+                where: {
+                    status: 'active'
+                }
             })
-            .catch(err => {
-                res.send(err)
-            })
+                .then(data => {
+                    // res.send(data)
+                    res.render('events', {data, formatDate})
+                })
+                .catch(err => {
+                    res.send(err)
+                })
     }
 
     static getEvent(req, res) {
@@ -38,7 +38,7 @@ class EventController{
             speakers: req.body.speakers,
             PromoterId: req.body.PromoterId
         }
-        console.log(newEvent)
+        // console.log(newEvent)
         Event.create(newEvent)
             .then(data => {
                 res.redirect('/events')
@@ -126,13 +126,7 @@ class EventController{
     }
 
     static findExpired (req, res){
-        Event.findAll({
-            include: Promoter, User,
-            where: {
-                status: 'expired'
-            }
-
-        })
+        Event.findExpiredEvent()
             .then(data => {
                 res.render('expiredEvents', {data, formatDate})
             })
