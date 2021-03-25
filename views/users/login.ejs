@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('../utils/bootstrap-style.ejs') %>
+  <title>Login</title>
+</head>
+<body>
+  <div style="text-align:center; margin:3%">
+    <h1>LOGIN</h1>
+  </div>
+
+  <div class="container-md col-md-2">
+    <form>
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" placeholder="">
+      </div><br>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a class="btn btn-danger" href="/" role="button">Cancel</a>
+    </form>
+  </div>
+</body>
+</html>
