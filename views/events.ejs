@@ -35,7 +35,7 @@
           <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
           <td><%= el.location %></td>
           <td><%= el.Promoter.name %></td>
-          <td></td>
+          <td><%= el.Users.length%></td>
           <td><a href="/events/register/<%= el.id %>">ATTEND</a> |
             <a href="/events/edit/<%= el.id %>">EDIT</a>       
         </tr>

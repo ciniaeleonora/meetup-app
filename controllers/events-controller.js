@@ -1,12 +1,12 @@
 'use strict'
 
-const { Promoter, Event, User } = require('../models/index')
+const { Promoter, Event, User , UserEvent} = require('../models/index')
 const formatDate = require('../helpers/formatDate')
 
 class EventController{
     static findAll (req, res){
         Event.findAll({
-            include: Promoter, User,
+            include: [Promoter, User],
             where: {
                 status: 'active'
             }
@@ -48,10 +48,22 @@ class EventController{
             })
     }
 
-    // static getRegister(req, res){
-    //     let pk = +req.params.id
-
-    // }
+    static getRegister(req, res){
+        let pk = +req.params.id
+        let newUser = {
+            UserId: +req.session.currentUser.id,
+            EventId: pk
+        }
+        // console.log(newUser)
+        UserEvent.create(newUser)
+            .then(data => {
+                res.redirect('/events')
+            })
+            .catch(err => {
+                // console.log(err)
+                res.send(err)
+            })
+    }
 
 
     static getEditEvent(req, res){

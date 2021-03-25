@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Event.belongsTo(models.Promoter, {foreignKey: 'PromoterId'})
+      Event.belongsToMany(models.User, {through: models.UserEvent, foreignKey: "EventId"})
     }
   };
   Event.init({
