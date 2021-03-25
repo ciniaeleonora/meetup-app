@@ -29,16 +29,18 @@ router.get('/users/register', UserController.formUserRegister)
 router.post('/users/register', UserController.userRegister)
 
 
-
 router.get('/promoters', PomoterController.findAll)
-router.get('/events', EventController.findAll)
-router.get('/events/add', EventController.getEvent)
-router.post('/events/add', EventController.postEvent)
-// router.post('/events/register', EventController.getRegister)
 
-router.get('/events/edit/:id', EventController.getEditEvent)
-router.post('/events/edit/:id', EventController.postEditEvent)
-router.get('/events/delete/:id', EventController.delete)
+router.get('/events', checkLogin, EventController.findAll)
+router.get('/events/add', checkLogin, EventController.getEvent)
+router.post('/events/add', checkLogin, EventController.postEvent)
+router.get('/events/register/:id', checkLogin, EventController.getRegister)
+
+router.get('/events/edit/:id', checkLogin, EventController.getEditEvent)
+router.post('/events/edit/:id', checkLogin, EventController.postEditEvent)
+router.get('/events/delete/:id', checkLogin, EventController.delete)
+
+router.get('/events/expired', checkLogin, EventController.findExpired)
 
 
 
