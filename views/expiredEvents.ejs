@@ -4,40 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../views/utils/bootstrap-style.ejs') %>
     <title>Meet Up !</title>
 </head>
 <body>
-    <nav>
-        <ul style="list-style-type: none;">
-            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/events/expired">Expired Events</a></li>
-        </ul>
-    </nav>
+  <%- include('../views/utils/navber-login.ejs') %>
 
+  <div style="text-align: center; margin: 3%;">
     <h1>Expired Events</h1>
     <br>
-
-    <a href="/events/add"> Add Event</a>
+    <a style="margin: 0px 5px;" class="btn btn-outline-success" href="/events/add" role="button">Add Event</a>
     <br>
-    <table style="width:100%"; border="1"> 
-        <tr>
-          <th>Event</th>
-          <th>Date</th>
-          <th>Location</th>
-          <th>Action</th>
-        </tr>
-        <% data.forEach((el, i) => { %>
-        <tr>
-          <td><%= el.generateEvent() %></td>
-          <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
-          <td><%= el.location %></td>
-          <td>
-          <% if(currentUser.isAdmin) { %>
-          <a href="/events/delete/<%= el.id %>">DELETE</a></td>  
-          <% } %>
-        </tr>
-        <% }) %>
-      </table>
+  </div>
+
+  <div class="container-md col-md-6">
+    <table style="width:100%"; class="table"> 
+      <tr class="table-dark">
+        <th>Event</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Action</th>
+      </tr>
+      <% data.forEach((el, i) => { %>
+      <tr>
+        <td><%= el.generateEvent() %></td>
+        <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
+        <td><%= el.location %></td>
+        <td>
+        <% if(currentUser.isAdmin) { %>
+        <a href="/events/delete/<%= el.id %>">DELETE</a></td>  
+        <% } %>
+      </tr>
+      <% }) %>
+    </table>
+  </div>
 </body>
 </html>
