@@ -17,13 +17,13 @@ class UserController {
         if(!found) res.redirect('/error')
         if (bcrypt.compareSync(req.body.password, found.password)) {
           req.session.isLogin = true;
+          console.log(req.session.isLogin,'req sesion');
           res.redirect('/')
         } else res.redirect('/login')
       })
   }
 
   static logout(req, res) {
-    console.log(req.session);
     req.session.destroy()
     res.redirect('/login')
   }
