@@ -14,7 +14,9 @@
       <h1>Future Events</h1>
       <br>
   
+      <% if(currentUser.isAdmin) { %>
       <a class="btn btn-primary" href="/events/add" role="button">Add Event</a>
+      <% } %>
       <br><br>
     </div>
 
