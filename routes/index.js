@@ -9,9 +9,10 @@ router.get('/', function(req, res, next) {
 
 /** */
 const checkLogin = (req, res, next) => {
-  if (req.session.isLogin == 'true') next()
+  if (req.session.currentUser.isLogin == 'true') next()
   else res.redirect('/login')
 }
+
 router.get('/logout', UserController.logout)
 
 router.get('/login', UserController.formLogin)

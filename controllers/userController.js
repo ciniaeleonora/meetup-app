@@ -2,7 +2,6 @@
 
 const User = require('../models').User
 const bcrypt = require('bcryptjs')
-const salt = bcrypt.genSaltSync(7)
 
 class UserController {
 
@@ -12,12 +11,16 @@ class UserController {
 
   static login(req, res) {
     User
-      .findOne({ where: { username: req.body.username } })
+      .findOne({ where: { username: req.body.username }})
       .then(found => {
         if(!found) res.redirect('/error')
         if (bcrypt.compareSync(req.body.password, found.password)) {
-          req.session.isLogin = true;
-          console.log(req.session.isLogin,'req sesion');
+          req.session.currentUser = {
+            name: found.name,
+            email: found.email,
+            isAdmin: found.isAdmin,
+            isLogin: true
+          }
           res.redirect('/')
         } else res.redirect('/login')
       })
