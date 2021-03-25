@@ -7,7 +7,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' })
 })
 
-router.get('/login', UserController.login)
+/** */
+const checkLogin = (req, res, next) => {
+  if (req.session.isLogin == 'true') next()
+  else res.redirect('/login')
+}
+
+router.get('/login', UserController.formLogin)
+router.post('/login', UserController.login)
+
 router.get('/users/register', UserController.formUserRegister)
 router.post('/users/register', UserController.userRegister)
 

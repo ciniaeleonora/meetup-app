@@ -4,8 +4,21 @@ const User = require('../models').User
 
 class UserController {
 
-  static login(req, res) {
+  static formLogin(req, res) {
     res.render('users/login')
+  }
+
+  static login(req, res) {
+    // console.log(req.session);
+    // console.log(req.body);
+    User
+      .findOne({ where: { username: req.body.username } })
+      .then(found => {
+        if (found.password == req.body.password) {
+          req.session.isLogin = true;
+          res.redirect('/')
+        } else res.redirect('/login')
+      })
   }
 
   static formUserRegister(req, res) {

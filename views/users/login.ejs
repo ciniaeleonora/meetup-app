@@ -13,17 +13,17 @@
   </div>
 
   <div class="container-md col-md-2">
-    <form>
+    <form action="/login" method="post">
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" name="username" placeholder="">
+        <input type="text" class="form-control" name="username">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="">
+        <input type="password" class="form-control" name="password">
       </div><br>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <input class="btn btn-primary" type="submit" value="Submit">
       <a class="btn btn-danger" href="/" role="button">Cancel</a>
     </form>
   </div>
