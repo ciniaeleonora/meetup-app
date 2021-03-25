@@ -1,6 +1,9 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const UserController = require('../controllers/userController')
+const EventController = require('../controllers/events-controller');
+const PomoterController = require('../controllers/promoter-controller');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -21,6 +24,23 @@ router.post('/login', UserController.login)
 
 router.get('/users/register', UserController.formUserRegister)
 router.post('/users/register', UserController.userRegister)
+
+
+
+router.get('/promoters', PomoterController.findAll)
+router.get('/events', EventController.findAll)
+router.get('/events/add', EventController.getEvent)
+router.post('/events/add', EventController.postEvent)
+// router.post('/events/register', EventController.getRegister)
+
+router.get('/events/edit/:id', EventController.getEditEvent)
+router.post('/events/edit/:id', EventController.postEditEvent)
+router.get('/events/delete/:id', EventController.delete)
+
+
+
+
+
 
 
 

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Up !</title>
+</head>
+<body>
+    <nav>
+        <ul style="list-style-type: none;">
+            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
+            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
+        </ul>
+    </nav>
+
+    <h1>Promoters</h1>
+    <br>
+
+    <table style="width:100%"; border="1"> 
+        <tr>
+          <th>Name</th>
+          <th>Contact</th>
+        </tr>
+        <% data.forEach((el) => { %>
+        <tr>
+          <td><%= el.name %></td>
+          <td><%= el.phone %></td>
+        </tr>
+        <% }) %>
+      </table>
+</body>
+</html>

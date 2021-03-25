@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Up !</title>
+</head>
+<body>
+    <nav>
+        <ul style="list-style-type: none;">
+            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
+            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
+        </ul>
+    </nav>
+
+    <h1>Future Events</h1>
+    <br>
+
+    <a href="/events/add"> Add Event</a>
+    <br>
+    <table style="width:100%"; border="1"> 
+        <tr>
+          <th>Event</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Speaker</th>
+          <th>Promoter</th>
+          <th>Atendees</th>
+          <th>Action</th>
+
+        </tr>
+        <% data.forEach((el, i) => { %>
+        <tr>
+          <td><%= el.name %></td>
+          <td><%= formatDate(el.date) %></td> <!-- ganti format --> 
+          <td><%= el.location %></td>
+          <td><%= el.speakers %></td>
+          <td><%= el.Promoter.name %></td>
+          <td></td>
+          <td><a href="#">REGISTER</a> |
+            <a href="/events/edit/<%= el.id %>">EDIT</a>| 
+            <a href="/events/delete/<%= el.id %>">DELETE</a></td>          
+        </tr>
+        <% }) %>
+      </table>
+</body>
+</html>
