@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../views/utils/bootstrap-style.ejs') %>
     <title>Meet Up !</title>
 </head>
 <body>
-    <nav>
-        <ul style="list-style-type: none;">
-            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
-            <li style = "display: inline;padding: 5px;"><a href="/events/expired">Expired Events</a></li>
-        </ul>
-    </nav>
+  <%- include('../views/utils/navber-login.ejs') %>
 
-    <h1>Future Events</h1>
-    <br>
+    <div style="text-align: center;">
+      <h1>Future Events</h1>
+      <br>
+  
+      <a class="btn btn-primary" href="/events/add" role="button">Add Event</a>
+      <br><br>
+    </div>
 
-    <a href="/events/add"> Add Event</a>
-    <br>
-    <table style="width:100%"; border="1"> 
-        <tr>
+    <div class="container-md col-md-6">
+      <table style="width:100%"; class="table"> 
+        <tr class="table-dark">
           <th>Event</th>
           <th>Date</th>
           <th>Location</th>
@@ -46,5 +45,6 @@
         </tr>
         <% }) %>
       </table>
+    </div>
 </body>
 </html>
