@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Up!</title>
+</head>
+<body>
+    <nav>
+        <ul style="list-style-type: none;">
+            <li style = "display: inline; padding: 5px;" ><a href="/events">Events</a></li>
+            <li style = "display: inline;padding: 5px;"><a href="/promoters">Promoters</a></li>
+        </ul>
+    </nav>
+
+    <h1>New Event...</h1>
+    <form action="/events/add"; method="POST">
+        <label for="name">Title:</label><br>
+        <input type="text" id="name" name="name" ><br><br>
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br><br>
+        <label for="location">Location:</label><br>
+        <input type="location" id="location" name="location"><br><br>
+        <label for="location">Speaker:</label><br>
+        <input type="speakers" id="speakers" name="speakers"><br><br>
+        <label for="PromoterId">Promoter:</label><br>
+        <select id="PromoterId" name="PromoterId">
+            <option selected disabled>--Please Choose--</option>
+            <% data.forEach(el => {%>
+            <option value="<%=el.id%>"><%= el.name%></option>
+            <% }) %>
+        </select><br><br>
+        <input type="submit">
+      </form>
+    
+</body>
+</html>
