@@ -2,6 +2,7 @@
 
 const User = require('../models').User
 const bcrypt = require('bcryptjs')
+const sendMail = require('../helpers/nodeMailer')
 
 class UserController {
 
@@ -36,9 +37,13 @@ class UserController {
   }
 
   static userRegister(req, res) {
+    console.log(req.body);
     User 
       .create({...req.body})
-      .then(_=> res.redirect('/'))
+      .then(_=> {
+        sendMail(req.body.name, req.body.email)
+        res.redirect('/')
+      })
       .catch(err => res.send(err))
   }
 }
