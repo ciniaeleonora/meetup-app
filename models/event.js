@@ -1,6 +1,8 @@
 'use strict';
+
+const { Promoter, User } = require('./index')
 const {
-  Model
+  Model, Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Event extends Model {
@@ -20,6 +22,15 @@ module.exports = (sequelize, DataTypes) => {
       Event.belongsToMany(models.User, {through: models.UserEvent, foreignKey: "EventId"})
     }
   };
+
+  Event.findExpiredEvent = function() {
+    return this.findAll({
+      where: {
+          status: 'expired'
+      }
+    })
+  }
+
   Event.init({
     name: {
       type: DataTypes.STRING,
