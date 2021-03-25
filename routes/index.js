@@ -4,21 +4,24 @@ const UserController = require('../controllers/userController')
 const EventController = require('../controllers/events-controller');
 const PomoterController = require('../controllers/promoter-controller');
 
-
+const setLocals = (req, res, next) => {
+  res.locals.currentUser = req.session.currentUser || null
+  next()
+}
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', setLocals, function(req, res, next) {
   res.render('index', { title: 'Express' })
 })
 
 /** */
 const checkLogin = (req, res, next) => {
-  if (req.session.currentUser.isLogin == 'true') next()
+  if (req.session.currentUser) next()
   else res.redirect('/login')
 }
 
 router.get('/logout', UserController.logout)
 
-router.get('/login', UserController.formLogin)
+router.get('/login', setLocals, UserController.formLogin)
 router.post('/login', UserController.login)
 
 

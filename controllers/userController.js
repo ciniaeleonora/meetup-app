@@ -2,6 +2,7 @@
 
 const User = require('../models').User
 const bcrypt = require('bcryptjs')
+const sendMail = require('../helpers/nodeMailer')
 
 class UserController {
 
@@ -16,10 +17,10 @@ class UserController {
         if(!found) res.redirect('/error')
         if (bcrypt.compareSync(req.body.password, found.password)) {
           req.session.currentUser = {
+            id : found.id,
             name: found.name,
             email: found.email,
-            isAdmin: found.isAdmin,
-            isLogin: true
+            isAdmin: found.isAdmin
           }
           res.redirect('/')
         } else res.redirect('/login')
@@ -36,9 +37,13 @@ class UserController {
   }
 
   static userRegister(req, res) {
+    console.log(req.body);
     User 
       .create({...req.body})
-      .then(_=> res.redirect('/'))
+      .then(_=> {
+        sendMail(req.body.name, req.body.email)
+        res.redirect('/')
+      })
       .catch(err => res.send(err))
   }
 }
